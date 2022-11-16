@@ -5,11 +5,15 @@
 
   export let task: Task;
 
+  // completionStatus is used to update the completion
+  // state of the task
+  let completionStatus = task.isCompleted;
+
   // startEdit is callad when the edit button
   // is clicked to switch to the edit mode
   export let startEdit: () => void;
 
-  // deleteTask removes the task from the 
+  // deleteTask removes the task from the
   // global task store
   function deleteTask() {
     tasks.remove(task.id);
@@ -18,7 +22,12 @@
 
 <form>
   <div>
-    <input type="checkbox" />
+    <input
+      type="checkbox"
+      bind:checked={completionStatus}
+      on:change={() => tasks.toggle(task.id, completionStatus)}
+    />
+
     <label for={task.id}>
       {task.name}
     </label>

@@ -1,5 +1,5 @@
 import { writable, type Writable } from "svelte/store";
-import { newTask, type Task } from "./types";
+import { Filter, newTask, type Task } from "./types";
 
 export const tasks: TaskStore = createTasksStore();
 
@@ -10,6 +10,7 @@ interface TaskStore extends Writable<Task[]> {
   add: (name: string) => void;
   remove: (id: string) => void;
   edit: (id: string, name: string) => void;
+  toggle: (id: string, completionStatus: boolean) => void;
 }
 
 function createTasksStore(): TaskStore {
@@ -37,6 +38,48 @@ function createTasksStore(): TaskStore {
         tasks[index].name = name;
         return tasks;
       });
+    },
+
+    // toggle sets the isCompleted property of the task with the
+    // given id to the completionStatus
+    toggle: (id: string, completionStatus: boolean) => {
+      update((tasks) => {
+        const index = tasks.findIndex((task) => task.id === id);
+        tasks[index].isCompleted = completionStatus;
+        return tasks;
+      });
+    },
+  };
+}
+
+// global filter store which holds the current filter state
+export const filterStore: FilterStore = createFilterStore();
+
+// FilterStore is store wrapper for setting a global filtered state.
+interface FilterStore extends Writable<Filter> {
+  setAll: () => void;
+  setCompleted: () => void;
+  setPending: () => void;
+}
+
+function createFilterStore(): FilterStore {
+  const { subscribe, set, update }: Writable<Filter> = writable(Filter.All);
+
+  return {
+    subscribe,
+    set,
+    update,
+
+    setAll: () => {
+      set(Filter.All);
+    },
+
+    setCompleted: () => {
+      set(Filter.Completed);
+    },
+
+    setPending: () => {
+      set(Filter.Pending);
     },
   };
 }

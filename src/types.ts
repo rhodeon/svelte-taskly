@@ -16,3 +16,9 @@ export function newTask(name: string): Task {
     isCompleted: false,
   };
 }
+
+export enum Filter {
+  All = "ALL",
+  Completed = "COMPLETED",
+  Pending = "PENDING",
+}
