@@ -23,6 +23,6 @@
   }
 </script>
 
-<button type="button" on:click={setFilter}>
-  {name}
+<button type="button" class="btn toggle-btn" on:click={setFilter}>
+  <span>{name}</span>
 </button>

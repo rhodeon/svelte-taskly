@@ -30,18 +30,22 @@
   }
 </script>
 
-<div>
+<div class="todoapp stack-large">
   <h1>Taskly</h1>
 
   <AddTaskForm />
 
   <!-- populate the filter buttons -->
-  {#each Object.values(Filter) as filter}
-    <FilterButton name={filter} />
-  {/each}
+  <div class="filters btn-group stack-exception">
+    {#each Object.values(Filter) as filter}
+      <FilterButton name={filter} />
+    {/each}
+  </div>
 
   <!-- display each task from the global store -->
-  {#each filteredTasks as task (task.id)}
-    <Todo {task} />
-  {/each}
+  <ul class="todo-list stack-large stack-exception">
+    {#each filteredTasks as task (task.id)}
+      <Todo {task} />
+    {/each}
+  </ul>
 </div>

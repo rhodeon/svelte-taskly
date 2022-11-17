@@ -20,26 +20,26 @@
   }
 </script>
 
-<form>
-  <div>
+<div class="stack-small">
+  <div class="c-cb">
     <input
       type="checkbox"
       bind:checked={completionStatus}
       on:change={() => tasks.toggle(task.id, completionStatus)}
     />
 
-    <label for={task.id}>
+    <label class="todo-label" for={task.id}>
       {task.name}
     </label>
   </div>
 
-  <div>
-    <button type="button" on:click={startEdit}>
+  <div class="btn-group">
+    <button class="btn" type="button" on:click={startEdit}>
       Edit <span>{task.name}</span>
     </button>
 
-    <button type="button" on:click={deleteTask}>
+    <button class="btn btn__danger" type="button" on:click={deleteTask}>
       Delete <span>{task.name}</span>
     </button>
   </div>
-</form>
+</div>
