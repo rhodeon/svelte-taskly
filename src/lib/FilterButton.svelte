@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Filter } from "../types";
-  import { filterStore } from "../stores";
+  import { filter } from "../stores/filter";
 
   export let name: string;
 
@@ -9,15 +9,15 @@
   function setFilter() {
     switch (name) {
       case Filter.All.valueOf():
-        filterStore.setAll();
+        filter.setAll();
         break;
 
       case Filter.Completed.valueOf():
-        filterStore.setCompleted();
+        filter.setCompleted();
         break;
 
       case Filter.Pending.valueOf():
-        filterStore.setPending();
+        filter.setPending();
         break;
     }
   }

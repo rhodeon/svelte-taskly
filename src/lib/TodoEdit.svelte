@@ -1,6 +1,7 @@
 <!-- Edit mode of a Todo item -->
 <script lang="ts">
-  import { tasks } from "../stores";
+  import { tasks } from "../stores/tasks";
+
   import type { Task } from "../types";
 
   export let task: Task;

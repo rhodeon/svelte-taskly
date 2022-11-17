@@ -2,7 +2,8 @@
   import AddTaskForm from "./lib/AddTaskForm.svelte";
   import FilterButton from "./lib/FilterButton.svelte";
   import Todo from "./lib/Todo.svelte";
-  import { tasks, filterStore } from "./stores";
+  import { tasks } from "./stores/tasks";
+  import { filter } from "./stores/filter";
   import { Filter, type Task } from "./types";
 
   // filteredTasks is an array derived from the global tasks store
@@ -11,7 +12,7 @@
   $: {
     // update the filtered tasks whenever there is a change in the selected
     // filter saved in filterStore
-    switch ($filterStore) {
+    switch ($filter) {
       case Filter.All:
         // on the All filter, set filteredTasks to all tasks
         filteredTasks = $tasks;

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { tasks } from "../stores";
+  import { tasks } from "../stores/tasks";
 
   let name: string = "";
 
@@ -13,7 +13,9 @@
 
 <form>
   <h2 class="label-wrapper">
-    <label for="new-todo-input" class="label__lg"> What needs to be done? </label>
+    <label for="new-todo-input" class="label__lg">
+      What needs to be done?
+    </label>
   </h2>
 
   <input
